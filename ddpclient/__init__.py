@@ -26,6 +26,6 @@ def authorize():
         client_secret = sys.argv[2]
         authorize_code = sys.argv[3]
 
-        print Auth().authorise(client_id=client_id,
+        print Auth().authorize(client_id=client_id,
                                client_secret=client_secret,
                                auth_code=authorize_code).to_json()
