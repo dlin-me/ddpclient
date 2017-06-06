@@ -29,7 +29,7 @@ class Auth:
 
         return flow.step1_get_authorize_url()
 
-    def authorise(self, client_id, client_secret, auth_code):
+    def authorize(self, client_id, client_secret, auth_code):
         flow = OAuth2WebServerFlow(client_id=client_id,
                                    client_secret=client_secret,
                                    scope=DDP_SCOPE,

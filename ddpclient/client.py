@@ -33,7 +33,7 @@ class Client(object):
 
         # set http headers
         http_headers = {}
-        headers = self.credentials.apply(http_headers)
+        self.credentials.apply(http_headers)
 
         soap_client.set_options(headers=http_headers)
 

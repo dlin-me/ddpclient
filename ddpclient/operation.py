@@ -2,9 +2,9 @@ from soap_entity import SoapEntity
 
 
 class Operation(SoapEntity):
-    def __init__(self, type):
+    def __init__(self, _type):
         self.operation_data = {}
-        self.operation_type = type
+        self.operation_type = _type
 
     def build(self, soap_client):
         return self.build_type(soap_client,

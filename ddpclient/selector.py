@@ -4,10 +4,7 @@ from soap_entity import SoapEntity
 
 class Selector(SoapEntity):
     def __init__(self):
-        self.selector_data = {}
-        self.selector_data['fields'] = []
-        self.selector_data['predicates'] = []
-        self.selector_data['ordering'] = []
+        self.selector_data = {'fields': [], 'predicates': [], 'ordering': []}
 
     def build(self, soap_client):
         return self.build_type(soap_client, ('Selector', self.selector_data))
@@ -27,7 +24,7 @@ class Selector(SoapEntity):
         return self
 
     def order_by(self, field, desc=False):
-        '''sortting a field by either 'ASCENDING' or 'DESCENDING' order.'''
+        """sorting a field by either 'ASCENDING' or 'DESCENDING' order."""
 
         sort_order = ('SortOrder', 'DESCENDING' if desc else 'ASCENDING')
         self.selector_data['ordering'].append(('OrderBy', {'field': field,
@@ -43,7 +40,7 @@ class Selector(SoapEntity):
         return self
 
     def _create_predicate_operator(self, short_operator_name):
-        operatorr_map = {'!=': 'NOT_EQUALS',
+        operator_map = {'!=': 'NOT_EQUALS',
                          '<>': 'NOT_EQUALS',
                          '==': 'EQUALS',
                          '>': 'GREATER_THAN',
@@ -53,8 +50,8 @@ class Selector(SoapEntity):
                          '[]': 'IN',
                          '][': 'NOT_IN'}
 
-        match_operator = operatorr_map[
-            short_operator_name] if operatorr_map.has_key(
+        match_operator = operator_map[
+            short_operator_name] if operator_map.has_key(
                 short_operator_name) else short_operator_name
 
-        return ('Predicate.Operator', match_operator)
+        return 'Predicate.Operator', match_operator
