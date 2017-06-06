@@ -15,7 +15,7 @@ class Client(object):
 
     def __init__(self, credentials=None, client_customer_id=None):
 
-        if credentials.access_token_expired:
+        if credentials.access_token_expired or credentials.access_token is None:
             http = httplib2.Http()
             credentials.refresh(http)
 
