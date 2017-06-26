@@ -5,8 +5,8 @@ import os
 import httplib2
 
 USER_AGENT = 'DDP API Call'
-USER_LIST_SERVICE_WSDL_URL = 'https://ddp.googleapis.com/api/ddp/provider/v201609/UserListService?wsdl'
-USER_LIST_CLIENT_SERVICE_WSDL_URL = 'https://ddp.googleapis.com/api/ddp/provider/v201609/UserListClientService?wsdl'
+USER_LIST_SERVICE_WSDL_URL = 'https://ddp.googleapis.com/api/ddp/provider/v201705/UserListService?wsdl'
+USER_LIST_CLIENT_SERVICE_WSDL_URL = 'https://ddp.googleapis.com/api/ddp/provider/v201705/UserListClientService?wsdl'
 
 
 class Client(object):
@@ -15,9 +15,8 @@ class Client(object):
 
     def __init__(self, credentials=None, client_customer_id=None):
 
-        if credentials.access_token_expired or credentials.access_token is None:
-            http = httplib2.Http()
-            credentials.refresh(http)
+        if credentials.access_token_expired or credentials.access_token is None: 
+            credentials.refresh(httplib2.Http())
 
         self.credentials = credentials
         self.client_customer_id = os.getenv('DDP_CLIENT_CUSTOMER_ID',
