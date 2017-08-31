@@ -16,3 +16,13 @@
 
 # test
 tmp.py
+
+# python cache
+*__pycache__
+
+# eggfiles
+eggs/
+.eggs/
+
+# vim swp files
+*.swp

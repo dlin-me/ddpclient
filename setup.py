@@ -3,6 +3,7 @@ from setuptools import setup
 # To use a consistent encoding
 from codecs import open
 from os import path
+import sys
 
 here = path.abspath(path.dirname(__file__))
 
@@ -43,7 +44,7 @@ setup(
 
         # Specify the Python versions you support here. In particular, ensure
         # that you indicate whether you support Python 2, Python 3 or both.
-        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 2.7 :: 3',
     ],
 
     # What does your project relate to?
@@ -61,7 +62,11 @@ setup(
     # your project is installed. For an analysis of "install_requires" vs pip's
     # requirements files see:
     # https://packaging.python.org/en/latest/requirements.html
-    install_requires=['oauth2client', 'suds', 'httplib2'],
+    install_requires=['oauth2client', 'suds-py3', 'httplib2', 'six'] \
+        if sys.version_info[0] >= 3 else \
+        ['oauth2client', 'suds', 'httplib2', 'six'],
+
+        
 
     # List additional groups of dependencies here (e.g. development
     # dependencies). You can install these using the following syntax,
