@@ -1,6 +1,6 @@
 from suds.client import Client as SudsClient
 from . import UserListClientSelector, UserListSelector
-from operation import Operation
+from .operation import Operation
 import os
 import httplib2
 

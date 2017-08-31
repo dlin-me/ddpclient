@@ -1,5 +1,5 @@
 import datetime
-from soap_entity import SoapEntity
+from .soap_entity import SoapEntity
 
 
 class Selector(SoapEntity):
@@ -51,7 +51,7 @@ class Selector(SoapEntity):
                          '][': 'NOT_IN'}
 
         match_operator = operator_map[
-            short_operator_name] if operator_map.has_key(
-                short_operator_name) else short_operator_name
+            short_operator_name] if short_operator_name in \
+                operator_map else short_operator_name
 
         return 'Predicate.Operator', match_operator

@@ -1,4 +1,4 @@
-from soap_entity import SoapEntity
+from .soap_entity import SoapEntity
 
 
 class Operation(SoapEntity):
