@@ -5,8 +5,8 @@ import os
 import httplib2
 
 USER_AGENT = 'DDP API Call'
-USER_LIST_SERVICE_WSDL_URL = 'https://ddp.googleapis.com/api/ddp/provider/v201705/UserListService?wsdl'
-USER_LIST_CLIENT_SERVICE_WSDL_URL = 'https://ddp.googleapis.com/api/ddp/provider/v201705/UserListClientService?wsdl'
+USER_LIST_SERVICE_WSDL_URL = 'https://ddp.googleapis.com/api/ddp/provider/v201802/UserListService?wsdl'
+USER_LIST_CLIENT_SERVICE_WSDL_URL = 'https://ddp.googleapis.com/api/ddp/provider/v201802/UserListClientService?wsdl'
 
 
 class Client(object):
