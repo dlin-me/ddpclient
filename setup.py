@@ -13,7 +13,7 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
 
 setup(
     name='ddpclient',
-    version='1.0.1',
+    version='2.0.0',
     description='A client library for DDP API',
     long_description=long_description,
 
@@ -46,6 +46,7 @@ setup(
         # that you indicate whether you support Python 2, Python 3 or both.
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3', 
+        'Programming Language :: Python :: 3.6',
     ],
 
     # What does your project relate to?
@@ -67,7 +68,6 @@ setup(
         if sys.version_info[0] >= 3 else \
         ['oauth2client', 'suds', 'httplib2', 'six'],
 
-        
 
     # List additional groups of dependencies here (e.g. development
     # dependencies). You can install these using the following syntax,

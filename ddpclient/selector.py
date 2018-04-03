@@ -1,4 +1,3 @@
-import datetime
 from .soap_entity import SoapEntity
 
 
@@ -18,7 +17,7 @@ class Selector(SoapEntity):
         self.selector_data['predicates'].append(
             ('Predicate', {'field': field,
                            'operator':
-                           self._create_predicate_operator(operator),
+                               self._create_predicate_operator(operator),
                            'values': values}))
 
         return self
@@ -29,7 +28,7 @@ class Selector(SoapEntity):
         sort_order = ('SortOrder', 'DESCENDING' if desc else 'ASCENDING')
         self.selector_data['ordering'].append(('OrderBy', {'field': field,
                                                            'sortOrder':
-                                                           sort_order}))
+                                                               sort_order}))
 
         return self
 

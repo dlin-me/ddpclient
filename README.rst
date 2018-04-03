@@ -24,10 +24,11 @@ Test
 
 Deploy
 ----
+Update the version and dependencies in `setup.py` and then:
 
 ::
 
-    python setup.py dist upload
+    python setup.py sdist upload
 
 
 Requirement

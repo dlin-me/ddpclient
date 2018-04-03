@@ -8,4 +8,4 @@ class TestAuth(TestCase):
         expected = 'https://accounts.google.com/o/oauth2/v2/auth?scope=https%3A%2F%2Fddp.googleapis.com%2Fapi%2Fddp&redirect_uri=urn%3Aietf%3Awg%3Aoauth%3A2.0%3Aoob&response_type=code&client_id=client_id_foo&access_type=offline'
          
         self.assertEqual(len(expected), len(url))
-        
+ 

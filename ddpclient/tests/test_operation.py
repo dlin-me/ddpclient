@@ -1,15 +1,21 @@
+import datetime
+from oauth2client.client import OAuth2Credentials
 from unittest import TestCase
 
 from ddpclient import Client, Operation
-from oauth2client.client import OAuth2Credentials
-import datetime
 
 
 class TestOperation(TestCase):
     def setUp(self):
-        self.client = Client(OAuth2Credentials('token', 'clientid', 'secret',
-                                               'rtoken', datetime.datetime(
-                                                   2038, 1, 1), 'uri', 'ua'))
+        self.client = Client(
+            OAuth2Credentials('token',
+                              'clientid',
+                              'secret',
+                              'rtoken',
+                              datetime.datetime(2038, 1, 1),
+                              'uri',
+                              'ua')
+        )
 
         self.operation = Operation('UserListOperation')
 
@@ -30,7 +36,6 @@ class TestOperation(TestCase):
         self.assertEqual('TEST', operation.operand.name)
 
     def test_set_user_list(self):
-
         operation = self.operation.set(self.user_list).build(
             self.client.user_list_service_soap_client)
 
