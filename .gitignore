@@ -23,6 +23,7 @@ tmp.py
 # eggfiles
 eggs/
 .eggs/
+*.egg
 
 # vim swp files
 *.swp
