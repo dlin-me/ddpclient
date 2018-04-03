@@ -6,6 +6,7 @@ import httplib2
 
 USER_AGENT = 'DDP API Call'
 USER_LIST_SERVICE_WSDL_URL = 'https://ddp.googleapis.com/api/ddp/provider/v201802/UserListService?wsdl'
+DMP_USER_LIST_SERVICE_WSDL_URL = 'https://ddp.googleapis.com/api/ddp/dmp/v201802/DmpUserListService?wsdl'
 USER_LIST_CLIENT_SERVICE_WSDL_URL = 'https://ddp.googleapis.com/api/ddp/provider/v201802/UserListClientService?wsdl'
 
 
@@ -26,6 +27,9 @@ class Client(object):
 
         self.user_list_client_service_soap_client = self._create_soap_client(
             USER_LIST_CLIENT_SERVICE_WSDL_URL)
+
+        self.dmp_user_list_service_soap_client = self._create_soap_client(
+            DMP_USER_LIST_SERVICE_WSDL_URL)
 
     def _create_soap_client(self, url):
         soap_client = SudsClient(url)
@@ -68,28 +72,46 @@ class Client(object):
         return self.user_list_client_service_soap_client.factory.create(
             'UserListClient')
 
-    def add(self, entity):
-        soap_client = self._parse_entity_for_soap_client(entity)
-        operation = self._parse_entity_for_operation(entity)
-        return soap_client.service.mutate(operation.add(entity).build(
-            soap_client))
+    def create_empty_client_customer_id(self):
+        return self.dmp_user_list_service_soap_client.factory.create(
+            'ClientCustomerId')
 
-    def set(self, entity):
-        soap_client = self._parse_entity_for_soap_client(entity)
+    def add(self, entity, client_customer_id=None):
+        soap_client = self._parse_entity_for_soap_client(entity, client_customer_id)
         operation = self._parse_entity_for_operation(entity)
-        return soap_client.service.mutate(operation.set(entity).build(
-            soap_client))
+        if client_customer_id:
+            return soap_client.service.mutate(client_customer_id, operation.add(
+                entity).build(soap_client))
+        else:
+            return soap_client.service.mutate(operation.add(entity).build(
+                soap_client))
 
-    def remove(self, entity):
-        soap_client = self._parse_entity_for_soap_client(entity)
+    def set(self, entity, client_customer_id=None):
+        soap_client = self._parse_entity_for_soap_client(entity, client_customer_id)
         operation = self._parse_entity_for_operation(entity)
-        return soap_client.service.mutate(operation.remove(entity).build(
-            soap_client))
+        if client_customer_id:
+            return soap_client.service.mutate(client_customer_id, operation.set(
+                entity).build(soap_client))
+        else:
+            return soap_client.service.mutate(operation.set(entity).build(
+                soap_client))
 
-    def _parse_entity_for_soap_client(self, entity):
+    def remove(self, entity, client_customer_id=None):
+        soap_client = self._parse_entity_for_soap_client(entity, client_customer_id)
+        operation = self._parse_entity_for_operation(entity)
+        if client_customer_id:
+            return soap_client.service.mutate(client_customer_id, operation.remove(
+                entity).build(soap_client))
+        else:
+            return soap_client.service.mutate(operation.remove(entity).build(
+                soap_client))
+
+    def _parse_entity_for_soap_client(self, entity, client_customer_id=None):
         soap_client = None
 
-        if hasattr(entity, 'UserList.Type'):
+        if client_customer_id:
+            soap_client = self.dmp_user_list_service_soap_client
+        elif hasattr(entity, 'UserList.Type'):
             soap_client = self.user_list_service_soap_client
         elif hasattr(entity, 'clientId') and hasattr(entity, 'userListId'):
             soap_client = self.user_list_client_service_soap_client
