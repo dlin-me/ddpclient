@@ -13,7 +13,7 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
 
 setup(
     name='ddpclient',
-    version='2.0.0',
+    version='2.0.1',
     description='A client library for DDP API',
     long_description=long_description,
 
