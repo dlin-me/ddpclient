@@ -13,11 +13,11 @@ class TestClient(TestCase):
     def test_create_user_list_service(self):
         service = self.client.user_list_service_soap_client
         self.assertEqual(
-            'https://ddp.googleapis.com/api/ddp/provider/v201802/UserListService?wsdl',
+            'https://ddp.googleapis.com/api/ddp/provider/v201809/UserListService?wsdl',
             service.wsdl.url)
 
     def test_create_user_list_client_service(self):
         service = self.client.user_list_client_service_soap_client
         self.assertEqual(
-            'https://ddp.googleapis.com/api/ddp/provider/v201802/UserListClientService?wsdl',
+            'https://ddp.googleapis.com/api/ddp/provider/v201809/UserListClientService?wsdl',
             service.wsdl.url)
